@@ -16,8 +16,15 @@ class AppKernel extends Kernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            
+            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+
+            new ImageLibraryBundle\ImageLibraryBundle(),
+            new FunkoPopBundle\FunkoPopBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
