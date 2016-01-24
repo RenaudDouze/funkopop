@@ -1,2 +1,17 @@
-{% include 'AppBundle:Tool:flash_messages.html.twig' %}
-{{ form(form) }}
+{% extends 'AppBundle:Common:layout.html.twig' %}
+
+{% block content %}
+
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">FunkPop - Ajouter</li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  {% include 'AppBundle:Tool:flash_messages.html.twig' %}
+  {{ form(form) }}
+</div>
+{% endblock content %}
