@@ -1,3 +1,4 @@
-app:
-    resource: "@AppBundle/Controller/"
+funkopop:
+    resource: "@FunkoPopBundle/Controller"
     type:     annotation
+

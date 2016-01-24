@@ -8,6 +8,11 @@ use Symfony\Component\Config\Loader\LoaderInterface;
  */
 class AppKernel extends Kernel
 {
+    /**
+     * RegisterBundles
+     *
+     * @return array
+     */
     public function registerBundles()
     {
         $bundles = [
@@ -23,7 +28,6 @@ class AppKernel extends Kernel
 
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
-            new ImageLibraryBundle\ImageLibraryBundle(),
             new FunkoPopBundle\FunkoPopBundle(),
         ];
 
@@ -37,21 +41,41 @@ class AppKernel extends Kernel
         return $bundles;
     }
 
+    /**
+     * GetRootDir
+     *
+     * @return string
+     */
     public function getRootDir()
     {
         return __DIR__;
     }
 
+    /**
+     * GetCacheDir
+     *
+     * @return string
+     */
     public function getCacheDir()
     {
         return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
     }
 
+    /**
+     * GetLogDir
+     *
+     * @return string
+     */
     public function getLogDir()
     {
         return dirname(__DIR__).'/var/logs';
     }
 
+    /**
+     * RegisterContainerConfiguration
+     *
+     * @param  LoaderInterface $loader
+     */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');

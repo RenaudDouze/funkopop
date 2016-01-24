@@ -1,0 +1,5 @@
+{% for image in list %}
+<img src="/{{ image.path }}" title="{{ image.title }}" alt="{{ image.name }}" />
+{% else %}
+Pas d'image
+{% endfor %}

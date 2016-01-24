@@ -1,6 +1,9 @@
 stof_doctrine_extensions:
     default_locale: %locale%
-
+    orm:
+        default:
+            timestampable: true
+            uploadable: true
     # Only used if you activated the Uploadable extension
     uploadable:
         # Default file path: This is one of the three ways you can configure the path for the Uploadable extension
