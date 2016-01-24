@@ -29,7 +29,7 @@ class AddController extends Controller
      *
      * @Route("")
      * @Route("/")
-     * 
+     *
      * @template
      */
     public function indexAction(Request $request)
@@ -40,17 +40,15 @@ class AddController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            
-            $image = $form->getData();
 
-            $uploadableManager = $this->get('stof_doctrine_extensions.uploadable.manager');
-            $uploadableManager->markEntityToUpload($image, $image->path);
-            
-            $em->persist($image);
-            
+            $this->handleForm($form);
+
+            $em->persist($form->getData());
             $em->flush();
 
             $this->addFlash('notice', 'FunkoPop ajouté');
+
+            return $this->redirectToRoute('app_add_index');
         }
 
         return array(
@@ -72,5 +70,18 @@ class AddController extends Controller
         ));
 
         return $form;
+    }
+
+    /**
+     * Handle form
+     *
+     * @param  Form $form
+     */
+    protected function handleForm(Form $form)
+    {
+        $image = $form->getData();
+
+        $uploadableManager = $this->get('stof_doctrine_extensions.uploadable.manager');
+        $uploadableManager->markEntityToUpload($image, $image->path);
     }
 }
