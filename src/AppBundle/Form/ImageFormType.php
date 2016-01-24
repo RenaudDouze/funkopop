@@ -1,6 +1,6 @@
 <?php
 
-namespace FunkoPopBundle\Form;
+namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,7 +21,7 @@ class ImageFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'FunkoPopBundle\Entity\Image',
+            'data_class' => 'AppBundle\Entity\Image',
         ));
     }
 

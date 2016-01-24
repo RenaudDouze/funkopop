@@ -1,6 +1,6 @@
 <?php
 
-namespace FunkoPopBundle\Controller;
+namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-use FunkoPopBundle\Form\ImageFormType;
+use AppBundle\Form\ImageFormType;
 
 /**
  * Controller add
