@@ -1,0 +1,12 @@
+{% extends "foundation_5_layout.html.twig" %}
+
+{% block file_widget -%}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' show-for-sr')|trim}) -%}
+    {{- block('form_widget_simple') -}}
+{%- endblock file_widget %}
+
+{% block file_label -%}
+    {{- block('form_label') -}}
+    {% set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' button')|trim}) %} 
+    {{- block('form_label') -}}
+{%- endblock file_label %}

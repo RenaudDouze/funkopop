@@ -19,3 +19,6 @@ twig:
     globals:
         locale: %locale%
         app_title: %app_title%
+    form_themes:
+        # - 'foundation_5_layout.html.twig'
+        - 'AppBundle:Common:form_themes.html.twig'

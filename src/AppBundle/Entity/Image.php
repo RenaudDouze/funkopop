@@ -16,7 +16,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  *
  * @Gedmo\Uploadable(
  *     pathMethod="getWebPath",
- *     filenameGenerator="ALPHANUMERIC", 
+ *     filenameGenerator="ALPHANUMERIC",
  *     appendNumber=true
  * )
  */
