@@ -145,6 +145,7 @@ class AdminController extends Controller
             if ($itemToDelete === $id) {
                 $em = $this->getDoctrine()->getManager();
                 $em->remove($image);
+                $em->flush();
 
                 $this->addFlash('notice', 'FunkoPop supprimé');
 

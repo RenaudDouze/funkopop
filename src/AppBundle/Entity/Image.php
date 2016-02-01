@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Uploadable\Uploadable;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
 /**
  * Image
@@ -19,6 +20,10 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  *     filenameGenerator="ALPHANUMERIC",
  *     appendNumber=true,
  * )
+ * @Gedmo\SoftDeleteable(
+ *     fieldName="deletedAt", 
+ *     timeAware=false
+ * )
  */
 class Image
 {
@@ -27,6 +32,12 @@ class Image
      * updates createdAt, updatedAt fields
      */
     use TimestampableEntity;
+    
+    /**
+     * Hook SoftDeleteable behavior
+     * updates deletedAt field
+     */
+    use SoftDeleteableEntity;
 
     /**
      * $id
