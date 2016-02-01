@@ -9,6 +9,20 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 class AppKernel extends Kernel
 {
     /**
+     * Construct
+     *
+     * @param string $environment The environment
+     * @param bool   $debug       Whether to enable debugging or not
+     */
+    public function __construct($environment, $debug)
+    {
+        parent::__construct($environment, $debug);
+
+        // get rid of Warning: date_default_timezone_get(): It is not safe to rely on the system's timezone
+        date_default_timezone_set('Europe/Paris');
+    }
+
+    /**
      * RegisterBundles
      *
      * @return array
@@ -23,7 +37,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
 
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            
+
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
 
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),

@@ -2,6 +2,7 @@
 
 {% block index_content %}
 
+{% if list|length %}
 <div class="row small-up-2 medium-up-3 large-up-4">
     {% for image in list %}
     <div class="columns">
@@ -23,5 +24,8 @@
     </div>
     {% endfor %}
 </div>
+{% else %}
+{% include 'AppBundle:Index:no_image.html.twig' %}
+{% endif %}
 
 {% endblock index_content %}
