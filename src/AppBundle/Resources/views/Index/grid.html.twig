@@ -1,0 +1,25 @@
+{% extends 'AppBundle:Index:base.html.twig' %}
+
+{% block index_content %}
+
+<div class="row small-up-2 medium-up-3 large-up-4">
+    {% for image in list %}
+    <div class="columns">
+        <h4>
+            {{ image.title }}
+        </h4>
+        <p>
+            {% for tag in image.tags|split(';') %}
+            <span class="secondary label">{{ tag }}</span>
+            {% endfor %}
+        </p> 
+        <p>
+            <small>{{ image.description }}</small>
+        </p> 
+
+        <img src="/{{ image.path }}" alt="{{ image.name }}" class="thumbnail" />
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock index_content %}

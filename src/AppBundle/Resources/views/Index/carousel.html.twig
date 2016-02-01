@@ -1,14 +1,6 @@
-{% extends 'AppBundle:Common:layout.html.twig' %}
+{% extends 'AppBundle:Index:base.html.twig' %}
 
-{% block content %}
-
-<div class="top-bar">
-  <div class="top-bar-left">
-    <ul class="dropdown menu" data-dropdown-menu>
-      <li class="menu-text">FunkPop</li>
-    </ul>
-  </div>
-</div>
+{% block index_content %}
 
 <div class="row medium-unstack" id="carousel">
     <div class="owl-carousel owl-theme">
@@ -20,7 +12,7 @@
     </div>
 </div>
 
-{% endblock content %}
+{% endblock index_content %}
 
 {% block scripts %}
 {{ parent() }}

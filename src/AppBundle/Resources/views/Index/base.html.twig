@@ -1,0 +1,15 @@
+{% extends 'AppBundle:Common:layout.html.twig' %}
+
+{% block content %}
+
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">FunkPop</li>
+    </ul>
+  </div>
+</div>
+
+{{ block('index_content') }}
+
+{% endblock content %}
