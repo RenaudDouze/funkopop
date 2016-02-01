@@ -25,16 +25,30 @@ class IndexController extends Controller
      *
      * @param Request $request
      * @param string  $style
+     * @param string  $search
      *
      * @return Response
      *
-     * @Route("", defaults={"style" = "carousel"})
-     * @Route("/{style}", name="app_index_index_style")
+     * @Route(
+     *     "",
+     *     defaults={
+     *         "style" = "carousel",
+     *     }
+     * )
+     * @Route(
+     *     "/{style}/{search}",
+     *     name="app_index_index_style",
+     * )
      */
-    public function indexAction(Request $request, $style)
+    public function indexAction(Request $request, $style, $search = '')
     {
-        $list = $this->getDoctrine()->getManager()
-            ->getRepository('AppBundle:Image')->findAll();
+        $repo = $this->getDoctrine()->getManager()->getRepository('AppBundle:Image');
+
+        if (! empty($search)) {
+            $list = $repo->findFromTag($search);
+        } else {
+            $list = $repo->findAll();
+        }
 
         return $this->render($this->getTemplate($style), array(
             'list' => $list,
@@ -59,7 +73,7 @@ class IndexController extends Controller
 
         if (empty($tpl[$style])) {
             throw new NotFoundHttpException("Template doesn't exist");
-              
+
         }
 
         return sprintf('AppBundle:Index:%s.html.twig', $tpl[$style]);

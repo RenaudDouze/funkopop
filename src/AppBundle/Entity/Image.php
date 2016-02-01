@@ -12,7 +12,7 @@ use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 /**
  * Image
  *
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Entity\Repository\ImageRepository")
  * @ORM\Table(name="image")
  *
  * @Gedmo\Uploadable(
@@ -21,7 +21,7 @@ use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
  *     appendNumber=true,
  * )
  * @Gedmo\SoftDeleteable(
- *     fieldName="deletedAt", 
+ *     fieldName="deletedAt",
  *     timeAware=false
  * )
  */
@@ -32,7 +32,7 @@ class Image
      * updates createdAt, updatedAt fields
      */
     use TimestampableEntity;
-    
+
     /**
      * Hook SoftDeleteable behavior
      * updates deletedAt field
