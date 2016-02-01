@@ -29,7 +29,7 @@ class IndexController extends Controller
      * @return Response
      *
      * @Route("", defaults={"style" = "carousel"})
-     * @Route("/{style}")
+     * @Route("/{style}", name="app_index_index_style")
      */
     public function indexAction(Request $request, $style)
     {
@@ -38,6 +38,7 @@ class IndexController extends Controller
 
         return $this->render($this->getTemplate($style), array(
             'list' => $list,
+            'style' => $style,
         ));
     }
 
