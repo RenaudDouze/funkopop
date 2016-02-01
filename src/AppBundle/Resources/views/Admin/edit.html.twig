@@ -1,0 +1,26 @@
+{% extends 'AppBundle:Admin:base.html.twig' %}
+
+{% block admin_content %}
+
+<div class="column row">
+  {% include 'AppBundle:Tool:flash_messages.html.twig' %}
+  {{ form(form) }}
+</div>
+{% endblock admin_content %}
+
+{% form_theme form _self %}
+
+{% block file_row -%}
+<div class="row">
+    <div class="small-6 medium-4 large-2 columns">
+        {%- set attr = attr|merge({class: (attr.class|default('') ~ ' show-for-sr')|trim}) -%}
+        {{- block('form_row') -}}
+    </div>
+    
+    {% if form.parent.vars.value.path is defined %}
+    <div class="small-6 medium-8 large-10 columns">
+        <img src="/{{ form.parent.vars.value.path }}" alt="{{ form.parent.vars.value.name }}" class="thumbnail" />
+    </div>
+    {% endif %}
+</div>
+{%- endblock file_row %}

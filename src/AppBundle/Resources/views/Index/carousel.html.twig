@@ -1,0 +1,34 @@
+{% extends 'AppBundle:Index:base.html.twig' %}
+
+{% block index_content %}
+
+<div class="row medium-unstack" id="carousel">
+    <div class="owl-carousel owl-theme">
+        {% for image in list %}
+        <div class="item">
+            <img class="" src="/{{ image.path }}" alt="{{ image.name }}" />
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock index_content %}
+
+{% block scripts %}
+{{ parent() }}
+<script type="text/javascript">
+$(document).ready(function() {
+    var owl = $(".owl-carousel").owlCarousel({
+        loop: true,
+        nav: true,
+        items: 1,
+        navText : ["Précédent","Suivant"],
+        dotsEach: 1,
+        dots: true,
+        center: true,
+        autoHeight: true,
+    });
+});
+</script>
+{% endblock scripts %}
+

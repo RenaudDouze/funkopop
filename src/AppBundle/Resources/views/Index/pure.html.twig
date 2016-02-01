@@ -1,0 +1,9 @@
+{% extends 'AppBundle:Index:base.html.twig' %}
+
+{% block index_content %}
+
+{% for image in list %}
+<img src="/{{ image.path }}" alt="{{ image.name }}" />
+{% endfor %}
+
+{% endblock index_content %}

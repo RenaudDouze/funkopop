@@ -1,0 +1,31 @@
+{% extends 'AppBundle:Admin:base.html.twig' %}
+
+{% block admin_content %}
+<div class="column row">
+    {% include 'AppBundle:Tool:flash_messages.html.twig' %}
+    
+    <h4>
+        {{ image.title }}
+    </h4>
+    <p>
+        {% for tag in image.tags|split(';') %}
+        <span class="secondary label">{{ tag }}</span>
+        {% endfor %}
+    </p> 
+    <p>
+        <small>{{ image.description }}</small>
+    </p> 
+
+    <div class="row">
+        <div class="small-6 medium-4 columns">
+            <img src="/{{ image.path }}" alt="{{ image.name }}" class="thumbnail" />
+        </div>
+    </div>
+
+    <div class="column row">
+        <a href="{{ path('app_admin_index') }}" class="button">Annuler</a>
+        <a href="{{ path('app_admin_delete', {id: image.id, confirm: 'oui'}) }}" class="alert button">Supprimer</a>
+    </div>
+</div>
+
+{% endblock admin_content %}
