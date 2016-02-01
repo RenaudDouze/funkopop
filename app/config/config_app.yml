@@ -20,11 +20,11 @@ twig:
     globals:
         locale: %locale%
         app_title: %app_title%
-        ga_ua: %ga_ua%
+        tracking_code: %tracking_code%
     form_themes:
         # - 'foundation_5_layout.html.twig'
         - 'AppBundle:Common:form_themes.html.twig'
-        
+
 doctrine:
     orm:
         entity_managers:
