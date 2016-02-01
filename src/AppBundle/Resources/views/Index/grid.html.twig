@@ -10,7 +10,9 @@
         </h4>
         <p>
             {% for tag in image.tags|split(';') %}
-            <span class="secondary label">{{ tag }}</span>
+            <a href="{{ path('app_index_index_style', {style: style, search: tag}) }}" class="secondary label">
+                {{ tag }}
+            </a>
             {% endfor %}
         </p> 
         <p>

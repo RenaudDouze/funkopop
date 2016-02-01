@@ -1,0 +1,6 @@
+a.label {
+    cursor: pointer;
+}
+a.label.secondary:hover {
+    background-color: #2199E8;
+}
