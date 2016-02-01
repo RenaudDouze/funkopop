@@ -121,6 +121,50 @@ class AdminController extends Controller
     }
 
     /**
+     * Delete image to library
+     *
+     * @param Request $request
+     * @param Image   $image
+     *
+     * @return Response
+     *
+     * @Route("/delete/{id}")
+     * @Route("/delete/{id}/")
+     *
+     * @template
+     */
+    public function deleteAction(Request $request, Image $image)
+    {
+        $session = $request->getSession();
+
+        $sessionKey = 'item_to_delete';
+        $id = $image->getId();
+        $itemToDelete = $session->get($sessionKey);
+
+        if ('oui' === $request->query->get('confirm')) {
+            if ($itemToDelete === $id) {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($image);
+
+                $this->addFlash('notice', 'FunkoPop supprimé');
+
+                $session->remove($sessionKey);
+
+                return $this->redirectToRoute('app_admin_index');
+            } elseif ($itemToDelete) {
+                $this->addFlash('error', 'Tu peux pas supprimer ce FunkoPop. Reessaye, ça devrait marcher');
+            }
+        }
+
+        $session->set($sessionKey, $id);
+
+
+        return array(
+            'image' => $image,
+        );
+    }
+
+    /**
      * Get image form
      *
      * @param Image $image

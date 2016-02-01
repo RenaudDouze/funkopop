@@ -10,11 +10,17 @@
 
 {% form_theme form _self %}
 
-{% block file_widget -%}
-    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' show-for-sr')|trim}) -%}
-    {{- block('form_widget_simple') -}}
-
+{% block file_row -%}
+<div class="row">
+    <div class="small-6 medium-4 large-2 columns">
+        {%- set attr = attr|merge({class: (attr.class|default('') ~ ' show-for-sr')|trim}) -%}
+        {{- block('form_row') -}}
+    </div>
+    
     {% if form.parent.vars.value.path is defined %}
-    <img src="/{{ form.parent.vars.value.path }}" class="thumbnail" />
+    <div class="small-6 medium-8 large-10 columns">
+        <img src="/{{ form.parent.vars.value.path }}" alt="{{ form.parent.vars.value.name }}" class="thumbnail" />
+    </div>
     {% endif %}
-{%- endblock file_widget %}
+</div>
+{%- endblock file_row %}

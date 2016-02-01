@@ -1,8 +1,9 @@
 {% extends 'AppBundle:Admin:base.html.twig' %}
 
 {% block admin_content %}
-
+{% include 'AppBundle:Tool:flash_messages.html.twig' %}
 <div class="row small-up-2 medium-up-3 large-up-4">
+
     {% for image in list %}
     {% set toggleId = 'description-image-' ~ image.id %}
     <div class="columns">
