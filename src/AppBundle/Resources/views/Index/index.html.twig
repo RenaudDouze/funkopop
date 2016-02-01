@@ -10,11 +10,11 @@
   </div>
 </div>
 
-<div class="row medium-unstack">
+<div class="row medium-unstack" id="carousel">
     <div class="owl-carousel owl-theme">
         {% for image in list %}
         <div class="item">
-            <img src="/{{ image.path }}" alt="{{ image.name }}" />
+            <img class="" src="/{{ image.path }}" alt="{{ image.name }}" />
         </div>
         {% endfor %}
     </div>
@@ -26,13 +26,15 @@
 {{ parent() }}
 <script type="text/javascript">
 $(document).ready(function() {
-    $(".owl-carousel").owlCarousel({
-        navigation : true, // Show next and prev buttons
-        slideSpeed : 300,
-        paginationSpeed : 400,
-        singleItem:true,
-        navigationText : ["Précédent","Suivant"],
- 
+    var owl = $(".owl-carousel").owlCarousel({
+        loop: true,
+        nav: true,
+        items: 1,
+        navText : ["Précédent","Suivant"],
+        dotsEach: 1,
+        dots: true,
+        center: true,
+        autoHeight: true,
     });
 });
 </script>
