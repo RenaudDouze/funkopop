@@ -1,0 +1,26 @@
+{% extends 'AppBundle:Common:layout.html.twig' %}
+
+{% block content %}
+
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">Funko Pop - Admin</li>
+      <li>
+        <a href="#">Liste</a>
+      </li>
+      <li>
+          <a href="{{ path('app_admin_add') }}">Ajouter</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+{{ block('admin_content') }}
+
+{% endblock content %}
+
+{% block stylesheet %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+{% endblock stylesheet %}

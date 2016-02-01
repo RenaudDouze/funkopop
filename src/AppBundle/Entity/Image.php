@@ -17,7 +17,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  * @Gedmo\Uploadable(
  *     pathMethod="getWebPath",
  *     filenameGenerator="ALPHANUMERIC",
- *     appendNumber=true
+ *     appendNumber=true,
  * )
  */
 class Image
@@ -66,7 +66,7 @@ class Image
      *
      * @Gedmo\UploadableFilePath
      */
-    public $path;
+    protected $path;
 
     /**
      * Image name
@@ -102,6 +102,15 @@ class Image
     public $size;
 
     /**
+     * Tags
+     *
+     * @var ArrayCollection
+     *
+     * @ORM\Column(name="tags", type="string")
+     */
+    public $tags;
+
+    /**
      * Get id
      *
      * @return integer
@@ -124,10 +133,36 @@ class Image
     /**
      * Get file basename
      *
-     * @return 
+     * @return string
      */
     public function getFileBasename()
     {
         return pathinfo($this->path, PATHINFO_BASENAME);
+    }
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     *
+     * @return self
+     */
+    public function setPath($path)
+    {
+        if (null !== $path) {
+            $this->path = $path;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
     }
 }
