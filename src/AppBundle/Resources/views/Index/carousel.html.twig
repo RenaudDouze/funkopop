@@ -7,7 +7,23 @@
     <div class="owl-carousel owl-theme">
         {% for image in list %}
         <div class="item">
+            
+            <h4>
+                {{ image.title }}
+            </h4>
+            <p>
+                {% for tag in image.tags|split(';') %}
+                <a href="{{ path('app_index_index_style', {style: style, search: tag}) }}" class="secondary label">
+                    {{ tag }}
+                </a>
+                {% endfor %}
+            </p> 
+            
             <img class="" src="/{{ image.path }}" alt="{{ image.name }}" />
+
+            <p>
+                <small>{{ image.description }}</small>
+            </p> 
         </div>
         {% endfor %}
     </div>
