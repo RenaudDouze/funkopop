@@ -22,3 +22,5 @@ parameters:
 
     # App parameters
     app_title: Funko Pop
+    ga_ua: 'UA-73186414-1'
+
