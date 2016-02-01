@@ -2,8 +2,12 @@
 
 {% block index_content %}
 
+{% if list|length %}
 {% for image in list %}
 <img src="/{{ image.path }}" alt="{{ image.name }}" />
 {% endfor %}
+{% else %}
+{% include 'AppBundle:Index:no_image.html.twig' %}
+{% endif %}
 
 {% endblock index_content %}

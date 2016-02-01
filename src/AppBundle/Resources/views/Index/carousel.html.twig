@@ -2,6 +2,7 @@
 
 {% block index_content %}
 
+{% if list|length %}
 <div class="row medium-unstack" id="carousel">
     <div class="owl-carousel owl-theme">
         {% for image in list %}
@@ -11,6 +12,9 @@
         {% endfor %}
     </div>
 </div>
+{% else %}
+{% include 'AppBundle:Index:no_image.html.twig' %}
+{% endif %}
 
 {% endblock index_content %}
 
