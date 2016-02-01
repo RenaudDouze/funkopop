@@ -8,13 +8,35 @@
       <li class="menu-text">FunkPop</li>
 
       <li>
-        <a href="{{ path('app_index_index_style', {style: 'carousel', search: search}) }}">Carousel</a>
+        <a href="{{ path('app_index_index_style', {style: style, search: 'star wars'}) }}">
+          <i class="fi-star"></i>Star Wars
+        </a>
       </li>
       <li>
-        <a href="{{ path('app_index_index_style', {style: 'grille', search: search}) }}">Grille</a>
+        <a href="{{ path('app_index_index_style', {style: style, search: 'dragon ball z'}) }}">
+          <i class="fi-star"></i>Dragon Ball Z
+        </a>
+      </li>
+
+    </ul>
+  </div>
+
+  <div class="top-bar-right">
+    <ul class="menu">
+      <li>
+        <a href="{{ path('app_index_index_style', {style: 'carousel', search: search}) }}">
+          <i class="fi-layout"></i>Carousel
+        </a>
       </li>
       <li>
-        <a href="{{ path('app_index_index_style', {style: 'pure', search: search}) }}">Pure</a>
+        <a href="{{ path('app_index_index_style', {style: 'grille', search: search}) }}">
+          <i class="fi-layout"></i>Grille
+        </a>
+      </li>
+      <li>
+        <a href="{{ path('app_index_index_style', {style: 'pure', search: search}) }}">
+          <i class="fi-layout"></i>Pure
+        </a>
       </li>
 
     </ul>
