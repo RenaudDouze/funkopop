@@ -53,6 +53,7 @@ class IndexController extends Controller
         return $this->render($this->getTemplate($style), array(
             'list' => $list,
             'style' => $style,
+            'search' => $search,
         ));
     }
 
