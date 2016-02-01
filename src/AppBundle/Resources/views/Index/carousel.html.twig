@@ -18,6 +18,7 @@
 {{ parent() }}
 <script type="text/javascript">
 $(document).ready(function() {
+    {% if 1 < list|length %}
     var owl = $(".owl-carousel").owlCarousel({
         loop: true,
         nav: true,
@@ -28,6 +29,9 @@ $(document).ready(function() {
         center: true,
         autoHeight: true,
     });
+    {% else %}
+    $('.owl-carousel').show();
+    {% endif %}
 });
 </script>
 {% endblock scripts %}
