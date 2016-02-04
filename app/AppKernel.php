@@ -42,6 +42,8 @@ class AppKernel extends Kernel
 
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
+            new Gregwar\ImageBundle\GregwarImageBundle(),
+
             new AppBundle\AppBundle(),
         ];
 

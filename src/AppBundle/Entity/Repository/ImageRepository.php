@@ -18,16 +18,21 @@ class ImageRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('i');
 
+
+
         $qb->where(
             $qb->expr()->like(
                 $qb->expr()->concat(
-                    'i.tags',
+                    $qb->expr()->concat(
+                        $qb->expr()->literal(';'),
+                        'i.tags'
+                    ),
                     $qb->expr()->literal(';')
                 ),
                 ':tag'
             )
         );
-        $qb->setParameter('tag', "%$tag;%");
+        $qb->setParameter('tag', "%;$tag;%");
 
         return $qb->getQuery()->getResult();
     }

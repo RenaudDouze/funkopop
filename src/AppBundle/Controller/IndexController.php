@@ -69,7 +69,7 @@ class IndexController extends Controller
         $tpl = [
             'carousel' => 'carousel',
             'grille' => 'grid',
-            'pure' => 'pure',
+            'simple' => 'simple',
         ];
 
         if (empty($tpl[$style])) {

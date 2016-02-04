@@ -232,8 +232,10 @@ class AdminController extends Controller
         $image = $form->getData();
 
         if ($image->getPath() instanceof UploadedFile) {
+            $file = $image->getPath();
+
             $uploadableManager = $this->get('stof_doctrine_extensions.uploadable.manager');
-            $uploadableManager->markEntityToUpload($image, $image->getPath());
+            $uploadableManager->markEntityToUpload($image, $file);
         }
     }
 }

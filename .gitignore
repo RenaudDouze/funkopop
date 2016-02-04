@@ -19,4 +19,7 @@
 /vendor/
 
 /web/bundles/
-/web/uploads/
+/web/uploads/image/*
+!/web/uploads/image/.gitkeep
+/web/cache/*
+!/web/cache/.gitkeep
