@@ -33,3 +33,6 @@ doctrine:
                     softdeleteable:
                         class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
                         enabled: true
+
+gregwar_image:
+    throw_exception: true

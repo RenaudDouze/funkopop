@@ -1,31 +1,32 @@
 {% extends 'AppBundle:Index:base.html.twig' %}
 
 {% block index_content %}
-
 {% if list|length %}
-<div class="row medium-unstack" id="carousel">
-    <div class="owl-carousel owl-theme">
-        {% for image in list %}
-        <div class="item">
-            
-            <h4>
-                {{ image.title }}
-            </h4>
-            <p>
-                {% for tag in image.tags|split(';') %}
-                <a href="{{ path('app_index_index_style', {style: style, search: tag}) }}" class="secondary label">
-                    {{ tag }}
-                </a>
-                {% endfor %}
-            </p> 
-            
-            <img class="" src="/{{ image.path }}" alt="{{ image.name }}" />
+<div class="row expanded" id="carousel">
+    <div class="columns small-12 medium-12 large-6 large-offset-3">
+        <div class="owl-carousel owl-theme">
+            {% for image in list %}
+            <div class="item">
+                
+                <h4>
+                    {{ image.title }}
+                </h4>
+                <p>
+                    {% for tag in image.tags|split(';') %}
+                    <a href="{{ path('app_index_index_style', {style: style, search: tag}) }}" class="secondary label">
+                        {{ tag }}
+                    </a>
+                    {% endfor %}
+                </p> 
 
-            <p>
-                <small>{{ image.description }}</small>
-            </p> 
+                <img class="" src="{{ web_image(image.path).cropResize(922, 620).jpeg() }}" alt="{{ image.name }}" />
+
+                <p>
+                    <small>{{ image.description }}</small>
+                </p> 
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 </div>
 {% else %}
@@ -39,6 +40,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
     {% if 1 < list|length %}
+    /*
     var owl = $(".owl-carousel").owlCarousel({
         loop: true,
         nav: true,
@@ -46,8 +48,15 @@ $(document).ready(function() {
         navText : ["Précédent","Suivant"],
         dotsEach: 1,
         dots: true,
-        center: true,
         autoHeight: true,
+    });
+    */
+    var owl = $(".owl-carousel").owlCarousel({
+        singleItem: true,
+        navigation : true, 
+        navigationText : ["Précédent","Suivant"],
+        autoHeight: true,
+        paginationNumbers: true,
     });
     {% else %}
     $('.owl-carousel').show();

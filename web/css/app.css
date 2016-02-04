@@ -4,3 +4,9 @@ a.label {
 a.label.secondary:hover {
     background-color: #2199E8;
 }
+
+.tpl-carousel .owl-carousel .owl-item .item,
+.tpl-grille .columns,
+.tpl-simple .row {
+    text-align: center;
+}
