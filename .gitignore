@@ -23,3 +23,5 @@
 !/web/uploads/image/.gitkeep
 /web/cache/*
 !/web/cache/.gitkeep
+/web/media/*
+!/web/media/.gitkeep
