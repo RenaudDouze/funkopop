@@ -2,13 +2,14 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 use Doctrine\ORM\Mapping as ORM;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Uploadable\Uploadable;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
-
 /**
  * Image
  *
@@ -76,6 +77,13 @@ class Image
      * @ORM\Column(name="path", type="string")
      *
      * @Gedmo\UploadableFilePath
+     *
+     * @Assert\Image(
+     *     minWidth = 300,
+     *     maxWidth = 1560,
+     *     minHeight = 400,
+     *     maxHeight = 2080
+     * )
      */
     protected $path;
 
@@ -117,7 +125,7 @@ class Image
      *
      * @var ArrayCollection
      *
-     * @ORM\Column(name="tags", type="string")
+     * @ORM\Column(name="tags", type="string", nullable=true)
      */
     public $tags;
 

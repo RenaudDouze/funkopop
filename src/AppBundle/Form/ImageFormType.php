@@ -42,7 +42,7 @@ class ImageFormType extends AbstractType
             $required = (! $image);
 
             $form->add('path', FileType::class, array(
-                'label' => 'Image/Photo',
+                'label' => 'Image/Photo (1560 x 2080 max)',
                 'data_class' => null,
                 'mapped' => true,
                 'required' => $required,
@@ -52,13 +52,17 @@ class ImageFormType extends AbstractType
         $builder->add('title', null, array(
             'required' => false,
             'label' => 'Titre',
+            'empty_data' => '',
         ));
         $builder->add('tags', null, array(
+            'required' => false,
             'label' => 'Tags',
+            'empty_data' => '',
         ));
         $builder->add('description', null, array(
             'required' => false,
             'label' => 'Description',
+            'empty_data' => '',
         ));
     }
 }
