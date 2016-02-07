@@ -16,9 +16,7 @@ class ImageRepository extends EntityRepository
      */
     public function findFromTag($tag)
     {
-        $qb = $this->createQueryBuilder('i');
-
-
+        $qb = $this->getFindQueryBuilder();
 
         $qb->where(
             $qb->expr()->like(
@@ -35,5 +33,40 @@ class ImageRepository extends EntityRepository
         $qb->setParameter('tag', "%;$tag;%");
 
         return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Get base find query builder
+     *
+     * @return QueryBuilder
+     */
+    public function getFindQueryBuilder()
+    {
+        $qb = $this->createQueryBuilder('i');
+        
+        $qb->orderBy('i.createdAt', 'desc');
+
+        return $qb;
+    }
+
+    /**
+     * Finds entities by a set of criteria.
+     *
+     * @param array      $criteria
+     * @param array|null $orderBy
+     * @param int|null   $limit
+     * @param int|null   $offset
+     *
+     * @return array The objects.
+     */
+    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+    {
+        if (null === $orderBy) {
+            $orderBy = [
+                'createdAt' => 'DESC',
+            ];
+        }
+
+        return parent::findBy($criteria, $orderBy, $limit, $offset);
     }
 }
