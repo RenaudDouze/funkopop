@@ -36,15 +36,3 @@ doctrine:
 
 gregwar_image:
     throw_exception: true
-
-liip_imagine:
-    resolvers:
-       default:
-          web_path: ~
-
-    filter_sets:
-        cache: ~
-        carousel:
-            quality: 75
-            filters:
-                relative_resize: { heighten: 550 }

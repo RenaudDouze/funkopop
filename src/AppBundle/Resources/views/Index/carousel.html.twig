@@ -19,10 +19,7 @@
                     {% endfor %}
                 </p> 
 
-                {#}
                 <img class="" src="{{ web_image(image.path).cropResize(922, 620).jpeg() }}" alt="{{ image.name }}" />
-                {#}
-                <img class="" src="{{ image.path|imagine_filter('carousel') }}" alt="{{ image.name }}" />
 
                 <p>
                     <small>{{ image.description }}</small>
