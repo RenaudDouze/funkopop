@@ -1,4 +1,5 @@
-cd funko
+cd funkopop/
+composer install
 php bin/console --env=prod cache:clear
 rm web/app_dev.php
 php bin/console --env=prod doctrine:schema:update --dump-sql

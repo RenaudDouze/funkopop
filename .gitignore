@@ -25,3 +25,5 @@
 !/web/cache/.gitkeep
 /web/media/*
 !/web/media/.gitkeep
+
+*.sublime-*
