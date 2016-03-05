@@ -69,4 +69,28 @@ class ImageRepository extends EntityRepository
 
         return parent::findBy($criteria, $orderBy, $limit, $offset);
     }
+
+    /**
+     * Retourne le top $nb des tags les plus utilisés
+     *
+     * @param interger $nb
+     *
+     * @return ArrayCollection Le tag en clé, le nombre en valeur
+     */
+    public function getTopTags($nb)
+    {
+        $images = $this->findAll();
+
+        $tags = [];
+        foreach ($images as $image) {
+            $tags = array_merge($tags, explode(';', $image->tags));
+        }
+
+        $bestTags = array_count_values($tags);
+        arsort($bestTags);
+
+        $bestTags = array_slice($bestTags, 0, $nb);
+
+        return $bestTags;
+    }
 }
