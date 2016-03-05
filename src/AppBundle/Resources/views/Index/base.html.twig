@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="top-bar">
+<header class="top-bar">
   <div class="top-bar-left">
     <ul class="dropdown menu" data-dropdown-menu>
       <li class="menu-text">
@@ -43,10 +43,94 @@
 
     </ul>
   </div>
-</div>
+</header>
 
 <div class="tpl-{{ style }}">
 {{ block('index_content') }}
 </div>
+
+<footer>
+  <div class="row">
+    <div class="">
+        <div class="medium-3 columns">
+
+          <ul class="menu vertical">
+            <li class="menu-text">Mes FunkoPop</li>
+            <li>
+              <a href="{{ path('app_index_index') }}">
+                Accueil
+              </a>
+            </li>
+            <li>
+              <a href="mailto:contact@renauddouze.fr">
+                Contact
+              </a>
+            </li>
+            <li>
+              <a href="http://funko.com/collections/pop">
+                Pop! | Funko (Site officiel)
+              </a>
+            </li>
+            <li class="menu-text">
+              <img class="thumbnail" src="/img/logo.png" alt="">
+            </li>
+          </ul>
+
+        </div>
+        <div class="medium-3 columns">
+
+          <ul class="menu vertical">
+            <li class="menu-text">Types d'affichages</li>
+            <li>
+              <a href="{{ path('app_index_index_style', {style: 'carousel', search: search}) }}">
+                Carousel
+              </a>
+            </li>
+            <li>
+              <a href="{{ path('app_index_index_style', {style: 'grille', search: search}) }}">
+                Grille
+              </a>
+            </li>
+            <li>
+              <a href="{{ path('app_index_index_style', {style: 'simple', search: search}) }}">
+                Simple</a>
+              </li>
+          </ul>
+
+          <ul class="menu vertical">
+            <li class="menu-text">Principales catégories</li>
+            <li>
+              <a href="{{ path('app_index_index_style', {style: style, search: 'star wars'}) }}">
+                Star Wars
+              </a>
+            </li>
+            <li>
+              <a href="{{ path('app_index_index_style', {style: style, search: 'dragon ball z'}) }}">
+                Dragon Ball Z
+              </a>
+            </li>
+          </ul>
+
+        </div>
+        <div class="medium-3 columns">
+
+        </div>
+        <div class="medium-3 columns">
+
+          <ol class="menu vertical">
+            <li class="menu-text">Top 10 tags</li>
+            {% for tag, nb in topTags  %}
+            <li>
+              <a href="{{ path('app_index_index_style', {style: style, search: tag }) }}">
+                {{ tag }}
+              </a>
+            </li>
+            {% endfor %}
+          </ol>
+
+        </div>
+    </div>
+  </div>
+</footer>
 
 {% endblock content %}
