@@ -8,6 +8,7 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -163,6 +164,26 @@ class AdminController extends Controller
         return array(
             'image' => $image,
         );
+    }
+
+    /**
+     * Liste les tags en fonction de la saisie 
+     *
+     * @param Request $request
+     *
+     * @return JsonResponse
+     * 
+     * @Route("/tags", options={"expose"=true})
+     * @Route("/tags/", options={"expose"=true})
+     */
+    public function tagAutocompleteAction(Request $request)
+    {
+        $input = $request->query->get('input');
+
+        $repo = $this->getDoctrine()->getManager()->getRepository('AppBundle:Image');
+        $list = $repo->findTags($input);
+
+        return new JsonResponse($list);
     }
 
     /**

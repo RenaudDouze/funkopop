@@ -93,4 +93,38 @@ class ImageRepository extends EntityRepository
 
         return $bestTags;
     }
+
+    /**
+     * Cherche des tags
+     *
+     * @return string $search
+     */
+    public function findTags($search)
+    {
+        $qb = $this->getFindQueryBuilder();
+
+        $qb->where(
+            $qb->expr()->like('i.tags', ':tag')
+        );
+        $qb->setParameter('tag', "%$search%");
+
+        $imagesWithTag = $qb->getQuery()->getResult();
+
+        $tags = [];
+        foreach ($imagesWithTag as $image) {
+            $imageTags = explode(';', $image->tags);
+
+            foreach($imageTags as $tag) {
+                if (false !== strpos($tag, $search)) {
+                    $tags[] = $tag;
+                }
+            }
+        }
+
+        $tags = array_unique($tags);
+        asort($tags);
+        $tags = array_values($tags);
+
+        return $tags;
+    }
 }
