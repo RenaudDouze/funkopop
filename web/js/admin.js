@@ -16,9 +16,15 @@ function createTagsInput(target, options)
         allowDuplicates: false,
         placeholder: '',
         onTagAdd: function(event, tag) {
-            var content = tagsInput.val() + ';' + tag;
+            var content = tagsInput.val();
+
+            content += ';' + tag;
             content = content.replace(';;', ';');
             content.trim();
+
+            if (';' === content.charAt(0)) {
+                content = content.slice(1, -1);
+            }
 
             tagsInput.val(content);
         },
@@ -26,6 +32,13 @@ function createTagsInput(target, options)
             var content = tagsInput.val();
 
             content.replace(';' + tag, '');
+            content.trim();
+
+            if (';' === content.charAt(0)) {
+                content = content.slice(1, -1);
+            }
+
+            tagsInput.val(content);
         }
     }, options);
 
