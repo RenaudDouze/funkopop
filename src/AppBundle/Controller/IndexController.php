@@ -50,10 +50,13 @@ class IndexController extends Controller
             $list = $repo->findAll();
         }
 
+        $topTags = $repo->getTopTags(10);
+
         return $this->render($this->getTemplate($style), array(
             'list' => $list,
             'style' => $style,
             'search' => $search,
+            'topTags' => $topTags,
         ));
     }
 
@@ -70,6 +73,7 @@ class IndexController extends Controller
             'carousel' => 'carousel',
             'grille' => 'grid',
             'simple' => 'simple',
+            'mosaique' => 'tile',
         ];
 
         if (empty($tpl[$style])) {

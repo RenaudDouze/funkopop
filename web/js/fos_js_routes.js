@@ -1,0 +1,1 @@
+fos.Router.setData({"base_url":"","routes":{"app_admin_tagautocomplete":{"tokens":[["text","\/admin\/tags"]],"defaults":[],"requirements":[],"hosttokens":[]},"app_admin_tagautocomplete_1":{"tokens":[["text","\/admin\/tags\/"]],"defaults":[],"requirements":[],"hosttokens":[]}},"prefix":"","host":"localhost","scheme":"http"});

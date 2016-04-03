@@ -69,4 +69,62 @@ class ImageRepository extends EntityRepository
 
         return parent::findBy($criteria, $orderBy, $limit, $offset);
     }
+
+    /**
+     * Retourne le top $nb des tags les plus utilisés
+     *
+     * @param interger $nb
+     *
+     * @return ArrayCollection Le tag en clé, le nombre en valeur
+     */
+    public function getTopTags($nb)
+    {
+        $images = $this->findAll();
+
+        $tags = [];
+        foreach ($images as $image) {
+            $tags = array_merge($tags, explode(';', $image->tags));
+        }
+
+        $bestTags = array_count_values($tags);
+        arsort($bestTags);
+
+        $bestTags = array_slice($bestTags, 0, $nb);
+
+        return $bestTags;
+    }
+
+    /**
+     * Cherche des tags
+     *
+     * @return string $search
+     */
+    public function findTags($search)
+    {
+        $qb = $this->getFindQueryBuilder();
+
+        $qb->where(
+            $qb->expr()->like('i.tags', ':tag')
+        );
+        $qb->setParameter('tag', "%$search%");
+
+        $imagesWithTag = $qb->getQuery()->getResult();
+
+        $tags = [];
+        foreach ($imagesWithTag as $image) {
+            $imageTags = explode(';', $image->tags);
+
+            foreach($imageTags as $tag) {
+                if (false !== strpos($tag, $search)) {
+                    $tags[] = $tag;
+                }
+            }
+        }
+
+        $tags = array_unique($tags);
+        asort($tags);
+        $tags = array_values($tags);
+
+        return $tags;
+    }
 }

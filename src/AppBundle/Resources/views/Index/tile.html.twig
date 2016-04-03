@@ -1,0 +1,47 @@
+{% extends 'AppBundle:Index:base.html.twig' %}
+
+{% block index_content %}
+
+{% if list|length %}
+<div class="row small-up-3 medium-up-6 large-up-6">
+    {% for image in list %}
+    <div class="columns">
+        <img src="{{ web_image(image.path).cropResize(270, 357).jpeg() }}" alt="{{ image.name }}" class="thumbnail" data-open="modal-{{ image.id }}" />
+
+        <div class="thumbnail-legend reveal" id="modal-{{ image.id }}" data-reveal data-close>
+            <div class="media-object stack-for-small">
+                <div class="media-object-section">
+                    <div class="thumbnail">
+                        <img src="{{ web_image(image.path).cropResize(270, 357).jpeg() }}" alt="{{ image.name }}" />
+
+                    </div>
+                </div>
+                <div class="media-object-section">
+                    <h4>
+                        {{ image.title }}
+                    </h4>
+                    <p>
+                        {% for tag in image.tags|split(';') %}
+                        <a href="{{ path('app_index_index_style', {style: style, search: tag}) }}" class="secondary label">
+                            {{ tag }}
+                        </a>
+                        {% endfor %}
+                    </p> 
+                    <p>
+                        <small>{{ image.description }}</small>
+                    </p> 
+
+                    <button class="close-button" data-close aria-label="Close reveal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+{% include 'AppBundle:Index:no_image.html.twig' %}
+{% endif %}
+
+{% endblock index_content %}

@@ -4,7 +4,7 @@ tarteaucitron.services.piwik = {
     "type": "analytic",
     "name": "Piwik",
     "uri": "https://fr.piwik.org/",
-    "needConsent": true,
+    "needConsent": false,
     "cookies": ['_pk_ref', '_pk_cvar', '_pk_id', '_pk_ses'],
     "js": function () {
         var _paq = _paq || [];

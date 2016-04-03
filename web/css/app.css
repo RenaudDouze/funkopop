@@ -5,8 +5,30 @@ a.label.secondary:hover {
     background-color: #2199E8;
 }
 
-.tpl-carousel .owl-carousel .owl-item .item,
-.tpl-grille .columns,
-.tpl-simple .row {
-    text-align: center;
+header .menu-text {
+    padding: 0;
+}
+
+footer {
+    color: #e6e6e6;
+    background-color: #074e68;
+    font-size: 0.8rem;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+footer a {
+    color: #e6e6e6;
+}
+footer .menu > li {
+    vertical-align: baseline;
+}
+footer .menu-text {
+    font-weight: bolder;
+    padding: 1.7rem 0 1rem;
+    font-size: 1.5rem;
+}
+footer .columns {
+}
+footer .columns:first-child {
+    border-left: none;
 }
