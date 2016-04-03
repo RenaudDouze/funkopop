@@ -1,0 +1,17 @@
+.tpl-carousel .owl-carousel .owl-item .item,
+.tpl-grille .columns,
+.tpl-mosaique .columns,
+.tpl-simple .row {
+    text-align: center;
+}
+
+.tpl-mosaique .columns {
+    position: relative;
+}
+.tpl-mosaique .columns .thumbnail-legend {
+    display: none;
+    position: absolute;
+}
+.tpl-mosaique .columns.active .thumbnail-legend {
+    display: block;
+}

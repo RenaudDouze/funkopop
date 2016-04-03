@@ -37,18 +37,16 @@
 {% endblock stylesheet %}
 
 {% block head_scripts %}
+{{ parent() }}
 <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
-<script type="text/javascript" src="{{ asset('js/vendor/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
 {% endblock head_scripts %}
 
 {% block scripts %}
-<script src="{{ asset('js/vendor/what-input.min.js') }}"></script>
-<script src="{{ asset('js/foundation.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/underscore-min.js') }}"></script>  
-<script type="text/javascript" src="{{ asset('js/taggle-custom.js') }}"></script>  
+{{ parent() }}
 
 <script type="text/javascript" src="{{ asset('js/admin.js') }}"></script>  
+
 {% endblock scripts %}

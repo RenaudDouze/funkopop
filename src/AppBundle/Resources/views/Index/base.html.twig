@@ -1,5 +1,36 @@
 {% extends 'AppBundle:Common:layout.html.twig' %}
 
+{% block stylesheet %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
+<link rel="stylesheet" href="{{ asset('css/index.css') }}" />
+{% endblock stylesheet %}
+
+
+{% block head_scripts %}
+{{ parent() }}
+<script type="text/javascript" src="/tarteaucitron/tarteaucitron.js"></script>
+<script type="text/javascript" src="/tarteaucitron/tarteaucitron.services.piwik.js"></script>
+<script type="text/javascript">
+tarteaucitron.init({
+  "hashtag": "#tarteaucitron", /* Ouverture automatique du panel avec le hashtag */
+  "highPrivacy": false, /* désactiver le consentement implicite (en naviguant) ? */
+  "orientation": "bottom", /* le bandeau doit être en haut (top) ou en bas (bottom) ? */
+  "adblocker": false, /* Afficher un message si un adblocker est détecté */
+  "showAlertSmall": true, /* afficher le petit bandeau en bas à droite ? */
+  "cookieslist": true, /* Afficher la liste des cookies installés ? */
+  "removeCredit": false /* supprimer le lien vers la source ? */
+});
+</script>
+{% endblock head_scripts %}
+
+{% block scripts %}
+{{ parent() }}
+<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('js/index.js') }}"></script>
+{% include 'AppBundle:Common:tracking.html.twig' %}    
+{% endblock scripts %}
+
 {% block content %}
 
 <header class="top-bar">
