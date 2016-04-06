@@ -57,6 +57,11 @@ tarteaucitron.init({
   <div class="top-bar-right">
     <ul class="menu">
       <li>
+        <a href="{{ path('app_index_index_style', {style: 'mosaique', search: search}) }}">
+          <i class="fi-layout"></i>Mosaïque
+        </a>
+      </li>
+      <li>
         <a href="{{ path('app_index_index_style', {style: 'carousel', search: search}) }}">
           <i class="fi-layout"></i>Carousel
         </a>
@@ -64,11 +69,6 @@ tarteaucitron.init({
       <li>
         <a href="{{ path('app_index_index_style', {style: 'grille', search: search}) }}">
           <i class="fi-layout"></i>Grille
-        </a>
-      </li>
-      <li>
-        <a href="{{ path('app_index_index_style', {style: 'mosaique', search: search}) }}">
-          <i class="fi-layout"></i>Mosaïque
         </a>
       </li>
       <li>
@@ -118,6 +118,11 @@ tarteaucitron.init({
           <ul class="menu vertical">
             <li class="menu-text">Types d'affichages</li>
             <li>
+              <a href="{{ path('app_index_index_style', {style: 'mosaique', search: search}) }}">
+                Mosaïque
+              </a>
+            </li>
+            <li>
               <a href="{{ path('app_index_index_style', {style: 'carousel', search: search}) }}">
                 Carousel
               </a>
@@ -125,11 +130,6 @@ tarteaucitron.init({
             <li>
               <a href="{{ path('app_index_index_style', {style: 'grille', search: search}) }}">
                 Grille
-              </a>
-            </li>
-            <li>
-              <a href="{{ path('app_index_index_style', {style: 'mosaique', search: search}) }}">
-                Mosaïque
               </a>
             </li>
             <li>
@@ -148,6 +148,11 @@ tarteaucitron.init({
             <li>
               <a href="{{ path('app_index_index_style', {style: style, search: 'dragon ball z'}) }}">
                 Dragon Ball Z
+              </a>
+            </li>
+            <li>
+              <a href="{{ path('app_index_index_style', {style: style, search: 'rare'}) }}">
+                Rare
               </a>
             </li>
           </ul>
