@@ -79,7 +79,7 @@ class ImageRepository extends EntityRepository
      */
     public function getTopTags($nb)
     {
-        $tags = $tis->getAllTags(false);
+        $tags = $this->getAllTags(false);
 
         $bestTags = array_count_values($tags);
         arsort($bestTags);
