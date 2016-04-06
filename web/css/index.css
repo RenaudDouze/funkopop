@@ -5,6 +5,9 @@
     text-align: center;
 }
 
+.tpl-mosaique {
+    margin-top: 1rem;
+}
 .tpl-mosaique .columns {
     position: relative;
 }
@@ -14,4 +17,38 @@
 }
 .tpl-mosaique .columns.active .thumbnail-legend {
     display: block;
+}
+
+
+.tpl-carousel .img-container,
+.tpl-grille .img-container,
+.tpl-mosaique .img-container {
+    display: inline-block;
+    position: relative;
+}
+.tpl-mosaique .img-container {
+    display: block;
+}
+.tpl-carousel .badge-rare,
+.tpl-grille .badge-rare,
+.tpl-mosaique .badge-rare {
+    position: absolute;
+    right: -15px;
+    font-size: 100%;
+    top: -15px;
+}
+.tpl-mosaique .badge-rare {
+    font-size: 0.6rem;
+    right: -10px;
+    top: -10px;
+}
+.tpl-mosaique.thumbnail-legend .badge-rare {
+    position: relative;
+    top: 0;
+    left: 0;
+    vertical-align: super; 
+}
+
+.tpl-grille .thumbnail-rare, .tpl-mosaique .thumbnail-rare {
+    box-shadow: 0 0 0 1px rgba(255, 174, 0, 0.8);
 }

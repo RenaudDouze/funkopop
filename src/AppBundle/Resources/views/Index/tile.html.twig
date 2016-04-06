@@ -6,26 +6,30 @@
 <div class="row small-up-3 medium-up-6 large-up-6">
     {% for image in list %}
     <div class="columns">
-        <img src="{{ web_image(image.path).cropResize(270, 357).jpeg() }}" alt="{{ image.name }}" class="thumbnail" data-open="modal-{{ image.id }}" />
+        <div class="img-container">
+            {% if image.isRare %}
+            <span class="warning badge badge-rare"><i class="fi-star"></i></span>
+            {% endif %}
+            <img src="{{ web_image(image.path).cropResize(270, 357).jpeg() }}" alt="{{ image.name }}" class="thumbnail {{ ((image.isRare) ? 'thumbnail-rare' : '') }}" data-open="modal-{{ image.id }}" />
+        </div>
 
-        <div class="thumbnail-legend reveal" id="modal-{{ image.id }}" data-reveal data-close>
+        <div class="thumbnail-legend reveal tpl-mosaique" id="modal-{{ image.id }}" data-reveal data-close>
             <div class="media-object stack-for-small">
                 <div class="media-object-section">
-                    <div class="thumbnail">
+                    <div class="thumbnail {{ ((image.isRare) ? 'thumbnail-rare' : '') }}">
                         <img src="{{ web_image(image.path).cropResize(270, 357).jpeg() }}" alt="{{ image.name }}" />
-
                     </div>
                 </div>
                 <div class="media-object-section">
-                    <h4>
+                    <h4>                        
+                        {% if image.isRare %}
+                        <span class="warning badge badge-rare"><i class="fi-star"></i></span>
+                        {% endif %}
+
                         {{ image.title }}
                     </h4>
                     <p>
-                        {% for tag in image.tags|split(';') %}
-                        <a href="{{ path('app_index_index_style', {style: style, search: tag}) }}" class="secondary label">
-                            {{ tag }}
-                        </a>
-                        {% endfor %}
+                        {% include 'AppBundle:Index:_tags.html.twig' %}
                     </p> 
                     <p>
                         <small>{{ image.description }}</small>

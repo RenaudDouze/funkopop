@@ -184,4 +184,22 @@ class Image
     {
         return $this->path;
     }
+
+    /**
+     * Is the image have a "rare" tag
+     *
+     * @return boolean
+     */
+    public function isRare()
+    {
+        $tags = explode(';', $this->tags);
+
+        $i = 0;
+
+        while($i < count($tags) && 'rare' !== $tags[$i]) {
+            $i++;
+        }
+
+        return ($i !== count($tags));
+    }
 }

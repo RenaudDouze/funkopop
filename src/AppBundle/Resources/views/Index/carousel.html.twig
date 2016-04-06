@@ -7,19 +7,20 @@
         <div class="owl-carousel owl-theme">
             {% for image in list %}
             <div class="item">
-                
+
                 <h4>
                     {{ image.title }}
                 </h4>
                 <p>
-                    {% for tag in image.tags|split(';') %}
-                    <a href="{{ path('app_index_index_style', {style: style, search: tag}) }}" class="secondary label">
-                        {{ tag }}
-                    </a>
-                    {% endfor %}
+                    {% include 'AppBundle:Index:_tags.html.twig' %}
                 </p> 
 
-                <img class="" src="{{ web_image(image.path).cropResize(922, 620).jpeg() }}" alt="{{ image.name }}" />
+                <div class="img-container">
+                    {% if image.isRare %}
+                    <span class="warning badge badge-rare"><i class="fi-star"></i></span>
+                    {% endif %}
+                    <img class="" src="{{ web_image(image.path).cropResize(922, 620).jpeg() }}" alt="{{ image.name }}" />
+                </div>
 
                 <p>
                     <small>{{ image.description }}</small>
