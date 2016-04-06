@@ -1,21 +1,27 @@
 {% extends 'AppBundle:Common:layout.html.twig' %}
 
+{% set currentRoute = app.request.attributes.get('_route') %}
+
 {% block content %}
 
 <div class="top-bar">
   <div class="top-bar-left">
     <ul class="dropdown menu" data-dropdown-menu>
       <li class="menu-text">Funko Pop - Admin</li>
-      <li>
+      <li class="{{ (('app_admin_index' == currentRoute) ? 'active' : '') }}">
         <a href="{{ path('app_admin_index') }}">
           <i class="fi-list"></i> Liste
         </a>
       </li>
-      <li>
+      <li class="{{ (('app_admin_add' == currentRoute) ? 'active' : '') }}">
           <a href="{{ path('app_admin_add') }}">
             <i class="fi-plus"></i> Ajouter
           </a>
       </li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu">
       <li>
           <a href="{{ path('app_index_index') }}">
             <i class="fi-web"></i> Front

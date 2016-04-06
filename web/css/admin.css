@@ -1,6 +1,9 @@
 .top-bar {
     margin-bottom: 2rem;
 }
+.menu .menu-text {
+    color: #808080;
+}
 
 /**
  * Gestionnaire de tags
