@@ -73,11 +73,30 @@ class ImageRepository extends EntityRepository
     /**
      * Retourne le top $nb des tags les plus utilisés
      *
-     * @param interger $nb
+     * @param integer $nb
      *
      * @return ArrayCollection Le tag en clé, le nombre en valeur
      */
     public function getTopTags($nb)
+    {
+        $tags = $tis->getAllTags(false);
+
+        $bestTags = array_count_values($tags);
+        arsort($bestTags);
+
+        $bestTags = array_slice($bestTags, 0, $nb);
+
+        return $bestTags;
+    }
+
+    /**
+     * Retourne la liste complète des tags
+     *
+     * @param boolean $distinct
+     *
+     * @return ArrayCollection
+     */
+    public function getAllTags($distinct = true)
     {
         $images = $this->findAll();
 
@@ -86,12 +105,11 @@ class ImageRepository extends EntityRepository
             $tags = array_merge($tags, explode(';', $image->tags));
         }
 
-        $bestTags = array_count_values($tags);
-        arsort($bestTags);
+        if ($distinct) {
+            $tags = array_unique($tags);
+        }
 
-        $bestTags = array_slice($bestTags, 0, $nb);
-
-        return $bestTags;
+        return $tags;
     }
 
     /**

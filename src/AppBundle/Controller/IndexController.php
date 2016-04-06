@@ -32,7 +32,7 @@ class IndexController extends Controller
      * @Route(
      *     "",
      *     defaults={
-     *         "style" = "carousel",
+     *         "style" = "mosaique",
      *     }
      * )
      * @Route(

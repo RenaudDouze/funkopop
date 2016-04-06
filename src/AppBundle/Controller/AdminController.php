@@ -79,8 +79,12 @@ class AdminController extends Controller
             return $this->redirectToRoute('app_admin_add');
         }
 
+        $repo = $this->getDoctrine()->getManager()->getRepository('AppBundle:Image');
+        $tags = $repo->getAllTags();
+
         return array(
             'form' => $form->createView(),
+            'tags' => $tags,
         );
     }
 
@@ -115,9 +119,13 @@ class AdminController extends Controller
             return $this->redirectToRoute('app_admin_index');
         }
 
+        $repo = $this->getDoctrine()->getManager()->getRepository('AppBundle:Image');
+        $tags = $repo->getAllTags();
+
         return array(
             'image' => $image,
             'form' => $form->createView(),
+            'tags' => $tags,
         );
     }
 

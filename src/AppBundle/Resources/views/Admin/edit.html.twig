@@ -7,6 +7,16 @@
   {{ form(form) }}
 </div>
 
+
+
 {% endblock admin_content %}
 
 {% form_theme form 'AppBundle:Admin:forms.html.twig' %}
+
+{% block scripts %}
+{{ parent() }}
+
+<script type="text/javascript">
+    var autocompleteSource = ['{{ tags|join("', '")|raw }}'];
+</script>
+{% endblock scripts %}

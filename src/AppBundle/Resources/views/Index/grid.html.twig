@@ -10,17 +10,18 @@
             {{ image.title }}
         </h4>
         <p>
-            {% for tag in image.tags|split(';') %}
-            <a href="{{ path('app_index_index_style', {style: style, search: tag}) }}" class="secondary label">
-                {{ tag }}
-            </a>
-            {% endfor %}
+            {% include 'AppBundle:Index:_tags.html.twig' %}
         </p> 
         <p>
             <small>{{ image.description }}</small>
         </p> 
 
-        <img src="{{ web_image(image.path).cropResize(270, 357).jpeg() }}" alt="{{ image.name }}" class="thumbnail" />
+        <div class="img-container">
+            {% if image.isRare %}
+            <span class="warning badge badge-rare"><i class="fi-star"></i></span>
+            {% endif %}
+            <img src="{{ web_image(image.path).cropResize(270, 357).jpeg() }}" alt="{{ image.name }}" class="thumbnail {{ ((image.isRare) ? 'thumbnail-rare' : '') }}" />
+        </div>
     </div>
     {% endfor %}
 </div>

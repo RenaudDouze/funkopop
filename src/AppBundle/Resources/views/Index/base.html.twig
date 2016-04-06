@@ -40,14 +40,19 @@ tarteaucitron.init({
         <a href="{{ path('app_index_index') }}">FunkPop</a>
       </li>
 
-      <li>
+      <li class="{{ (('star wars' == search) ? 'active' : '') }}">
         <a href="{{ path('app_index_index_style', {style: style, search: 'star wars'}) }}">
           <i class="fi-star"></i>Star Wars
         </a>
       </li>
-      <li>
+      <li class="{{ (('dragon ball z' == search) ? 'active' : '') }}">
         <a href="{{ path('app_index_index_style', {style: style, search: 'dragon ball z'}) }}">
           <i class="fi-star"></i>Dragon Ball Z
+        </a>
+      </li>
+      <li class="{{ (('rare' == search) ? 'active' : '') }} warning">
+        <a href="{{ path('app_index_index_style', {style: style, search: 'rare'}) }}">
+          <i class="fi-star"></i>Rare
         </a>
       </li>
 
@@ -56,22 +61,22 @@ tarteaucitron.init({
 
   <div class="top-bar-right">
     <ul class="menu">
-      <li>
-        <a href="{{ path('app_index_index_style', {style: 'carousel', search: search}) }}">
-          <i class="fi-layout"></i>Carousel
-        </a>
-      </li>
-      <li>
-        <a href="{{ path('app_index_index_style', {style: 'grille', search: search}) }}">
-          <i class="fi-layout"></i>Grille
-        </a>
-      </li>
-      <li>
+      <li class="{{ (('mosaique' == style) ? 'active' : '') }}">
         <a href="{{ path('app_index_index_style', {style: 'mosaique', search: search}) }}">
           <i class="fi-layout"></i>Mosaïque
         </a>
       </li>
-      <li>
+      <li class="{{ (('carousel' == style) ? 'active' : '') }}">
+        <a href="{{ path('app_index_index_style', {style: 'carousel', search: search}) }}">
+          <i class="fi-layout"></i>Carousel
+        </a>
+      </li>
+      <li class="{{ (('grille' == style) ? 'active' : '') }}">
+        <a href="{{ path('app_index_index_style', {style: 'grille', search: search}) }}">
+          <i class="fi-layout"></i>Grille
+        </a>
+      </li>
+      <li class="{{ (('simple' == style) ? 'active' : '') }}">
         <a href="{{ path('app_index_index_style', {style: 'simple', search: search}) }}">
           <i class="fi-layout"></i>Simple
         </a>
@@ -117,22 +122,22 @@ tarteaucitron.init({
 
           <ul class="menu vertical">
             <li class="menu-text">Types d'affichages</li>
-            <li>
-              <a href="{{ path('app_index_index_style', {style: 'carousel', search: search}) }}">
-                Carousel
-              </a>
-            </li>
-            <li>
-              <a href="{{ path('app_index_index_style', {style: 'grille', search: search}) }}">
-                Grille
-              </a>
-            </li>
-            <li>
+            <li class="{{ (('mosaique' == style) ? 'active' : '') }}">
               <a href="{{ path('app_index_index_style', {style: 'mosaique', search: search}) }}">
                 Mosaïque
               </a>
             </li>
-            <li>
+            <li class="{{ (('carousel' == style) ? 'active' : '') }}">
+              <a href="{{ path('app_index_index_style', {style: 'carousel', search: search}) }}">
+                Carousel
+              </a>
+            </li>
+            <li class="{{ (('grille' == style) ? 'active' : '') }}">
+              <a href="{{ path('app_index_index_style', {style: 'grille', search: search}) }}">
+                Grille
+              </a>
+            </li>
+            <li class="{{ (('simple' == style) ? 'active' : '') }}">
               <a href="{{ path('app_index_index_style', {style: 'simple', search: search}) }}">
                 Simple</a>
               </li>
@@ -140,14 +145,19 @@ tarteaucitron.init({
 
           <ul class="menu vertical">
             <li class="menu-text">Principales catégories</li>
-            <li>
+            <li class="{{ (('star wars' == search) ? 'active' : '') }}">
               <a href="{{ path('app_index_index_style', {style: style, search: 'star wars'}) }}">
                 Star Wars
               </a>
             </li>
-            <li>
+            <li class="{{ (('dragon ball z' == search) ? 'active' : '') }}">
               <a href="{{ path('app_index_index_style', {style: style, search: 'dragon ball z'}) }}">
                 Dragon Ball Z
+              </a>
+            </li>
+            <li class="{{ (('rare' == search) ? 'active' : '') }}">
+              <a href="{{ path('app_index_index_style', {style: style, search: 'rare'}) }}">
+                Rare
               </a>
             </li>
           </ul>
@@ -161,7 +171,7 @@ tarteaucitron.init({
           <ol class="menu vertical">
             <li class="menu-text">Top 10 tags</li>
             {% for tag, nb in topTags  %}
-            <li>
+            <li class="{{ ((tag == search) ? 'active' : '') }}">
               <a href="{{ path('app_index_index_style', {style: style, search: tag }) }}">
                 {{ tag }}
               </a>

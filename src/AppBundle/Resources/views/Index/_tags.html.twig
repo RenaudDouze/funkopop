@@ -1,0 +1,7 @@
+{% for tag in image.tags|split(';') %}
+<a href="{{ path('app_index_index_style', {style: style, search: tag}) }}" 
+    class="{{ (('rare' == tag) ? 'warning' : 'secondary') }} label"
+>
+    {{ tag }}
+</a>
+{% endfor %}
