@@ -19,11 +19,15 @@
 {{ form_widget(form) }}
 <script type="text/javascript">
 $(document).ready(function() {
-    createTagsInput('tags-container-{{ id }}', {
-        {% if form.vars.value is not empty %}
-        tags: ['{{ form.vars.value|split(";")|join("', '")|raw }}'],
-        {% endif %}
-    })
+    createTagsInput(
+        'tags-container-{{ id }}', 
+        {
+            {% if form.vars.value is not empty %}
+            tags: ['{{ form.vars.value|split(";")|join("', '")|raw }}'],
+            {% endif %}
+        },
+        autocompleteSource
+    );
 });
 </script>
 {%- endblock _image_form_tags_widget %}
