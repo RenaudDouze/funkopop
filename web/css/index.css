@@ -19,7 +19,6 @@
     display: block;
 }
 
-
 .tpl-carousel .img-container,
 .tpl-grille .img-container,
 .tpl-mosaique .img-container {
@@ -51,4 +50,15 @@
 
 .tpl-grille .thumbnail-rare, .tpl-mosaique .thumbnail-rare {
     box-shadow: 0 0 0 1px rgba(255, 174, 0, 0.8);
+}
+
+.menu .menu-text > a {
+    color: #808080;
+}
+.menu .active.warning > a {
+    color: #fefefe;
+    background: #ffae00;
+}
+.menu .warning > a {
+    color: #ffae00;
 }
