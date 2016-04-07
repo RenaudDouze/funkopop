@@ -1,3 +1,4 @@
+. ~/.bashrc
 cd funkopop/
 rm web/app_dev.php
 composer install
