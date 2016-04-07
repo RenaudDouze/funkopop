@@ -81,6 +81,7 @@ class AdminController extends Controller
 
         $repo = $this->getDoctrine()->getManager()->getRepository('AppBundle:Image');
         $tags = $repo->getAllTags();
+        asort($tags);
 
         return array(
             'form' => $form->createView(),
@@ -121,6 +122,7 @@ class AdminController extends Controller
 
         $repo = $this->getDoctrine()->getManager()->getRepository('AppBundle:Image');
         $tags = $repo->getAllTags();
+        asort($tags);
 
         return array(
             'image' => $image,
