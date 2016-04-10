@@ -56,7 +56,6 @@ class AdminController extends Controller
      * @return Response
      *
      * @Route("/add")
-     * @Route("/add/")
      *
      * @template
      */
@@ -74,7 +73,7 @@ class AdminController extends Controller
             $em->persist($form->getData());
             $em->flush();
 
-            $this->addFlash('notice', 'FunkoPop ajouté');
+            $this->addFlash('notice', 'Ajouté');
 
             return $this->redirectToRoute('app_admin_add');
         }
@@ -98,7 +97,6 @@ class AdminController extends Controller
      * @return Response
      *
      * @Route("/edit/{id}")
-     * @Route("/edit/{id}/")
      *
      * @template
      */
@@ -115,7 +113,7 @@ class AdminController extends Controller
 
             $em->flush();
 
-            $this->addFlash('notice', 'FunkoPop modifié');
+            $this->addFlash('notice', 'Modifié');
 
             return $this->redirectToRoute('app_admin_index');
         }
@@ -140,7 +138,6 @@ class AdminController extends Controller
      * @return Response
      *
      * @Route("/delete/{id}")
-     * @Route("/delete/{id}/")
      *
      * @template
      */
@@ -184,7 +181,6 @@ class AdminController extends Controller
      * @return JsonResponse
      * 
      * @Route("/tags", options={"expose"=true})
-     * @Route("/tags/", options={"expose"=true})
      */
     public function tagAutocompleteAction(Request $request)
     {
@@ -197,6 +193,46 @@ class AdminController extends Controller
     }
 
     /**
+     * Upload une image
+     *
+     * @param Request $request
+     *
+     * @return Response
+     *
+     * @Route(
+     *     "/upload/{id}", 
+     *     options={"expose"=true},
+     *     requirements={"id" = "\d+"}, 
+     *     defaults={"id" = null}
+     * )
+     */
+    public function uploadAction(Request $request, Image $image = null)
+    {
+        $form = $this->getEditForm($image);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $image = $this->handleForm($form);
+
+            $em->flush();
+
+            $serializer = $this->get('jms_serializer');
+            $data = $serializer->serialize($image, 'json');
+
+            $response = new Response();
+            $response->setContent($data);
+            $response->headers->set('Content-Type', 'application/json');
+
+            return $response;
+        }
+
+        return new JsonResponse(['error' => 'Image invalide']);
+    }
+
+    /**
      * Get image form
      *
      * @param Image $image
@@ -206,11 +242,6 @@ class AdminController extends Controller
     protected function getForm(Image $image = null)
     {
         $form = $this->createForm(ImageFormType::class, $image);
-
-        $form->add('save', SubmitType::class, array(
-            'attr' => array('class' => 'save'),
-            'label' => 'Ajoute le',
-        ));
 
         return $form;
     }
@@ -228,7 +259,7 @@ class AdminController extends Controller
 
         $form->add('save', SubmitType::class, array(
             'attr' => array('class' => 'save'),
-            'label' => 'Ajoute le',
+            'label' => 'Ajouter',
         ));
 
         return $form;
@@ -247,7 +278,7 @@ class AdminController extends Controller
 
         $form->add('save', SubmitType::class, array(
             'attr' => array('class' => 'save'),
-            'label' => 'Modifie le',
+            'label' => 'Enregister',
         ));
 
         return $form;
@@ -256,7 +287,9 @@ class AdminController extends Controller
     /**
      * Handle form
      *
-     * @param  Form $form
+     * @param Form $form
+     *
+     * @return Image
      */
     protected function handleForm(Form $form)
     {
@@ -268,5 +301,7 @@ class AdminController extends Controller
             $uploadableManager = $this->get('stof_doctrine_extensions.uploadable.manager');
             $uploadableManager->markEntityToUpload($image, $file);
         }
+
+        return $image;
     }
 }
