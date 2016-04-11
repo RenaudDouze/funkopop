@@ -1,12 +1,1 @@
-{% extends 'AppBundle:Admin:base.html.twig' %}
-
-{% block admin_content %}
-
-<div class="column row">
-  {% include 'AppBundle:Tool:flash_messages.html.twig' %}
-  {{ form(form) }}
-</div>
-
-{% endblock admin_content %}
-
-{% form_theme form 'AppBundle:Admin:forms.html.twig' %}
+{% include 'AppBundle:Admin:edit.html.twig' %}

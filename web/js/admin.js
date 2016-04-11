@@ -24,19 +24,21 @@ function createTagsInput(target, options, autocompleteSource)
             content.trim();
 
             if (';' === content.charAt(0)) {
-                content = content.slice(1, -1);
+                content = content.slice(1);
             }
 
             tagsInput.val(content);
         },
         onTagRemove: function(event, tag) {
             var content = tagsInput.val();
+            console.log('onTagRemove', tag, content);
 
-            content.replace(';' + tag, '');
+            content = ';' + content;
+            content = content.replace(';' + tag, '');
             content.trim();
 
             if (';' === content.charAt(0)) {
-                content = content.slice(1, -1);
+                content = content.slice(1);
             }
 
             tagsInput.val(content);

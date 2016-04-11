@@ -7,6 +7,12 @@
     
     {% if form.parent.vars.value.path is defined %}
     <div class="small-6 medium-8 large-10 columns">
+        <div class="callout upload-status-container" style="display: none;" data-closable>
+            <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <p class="upload-status-content"></p>
+        </div>
         <img src="/{{ form.parent.vars.value.path }}" alt="{{ form.parent.vars.value.name }}" class="thumbnail" />
     </div>
     {% endif %}
