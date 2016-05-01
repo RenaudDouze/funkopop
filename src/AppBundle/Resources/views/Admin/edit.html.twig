@@ -28,8 +28,9 @@
     }
 
     $(function () {
+        {% set uploadRouteParam = ((image is defined) ? '{id: '~image.id~'}' : '{}') %}
         $('#image_form_path').fileupload({
-            url: Routing.generate('app_admin_upload', {id: {{ image.id }}}),
+            url: Routing.generate('app_admin_upload', {{ uploadRouteParam }}),
             dataType: 'json',
         }).on('fileuploadadd', function (e, data) {
             uploadStatusInit();
