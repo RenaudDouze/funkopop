@@ -258,7 +258,7 @@ class AdminController extends Controller
         $form = $this->getForm($image);
 
         $form->add('save', SubmitType::class, array(
-            'attr' => array('class' => 'save'),
+            'attr' => array('class' => 'save success'),
             'label' => 'Ajouter',
         ));
 
@@ -277,7 +277,7 @@ class AdminController extends Controller
         $form = $this->getForm($image);
 
         $form->add('save', SubmitType::class, array(
-            'attr' => array('class' => 'save'),
+            'attr' => array('class' => 'save success'),
             'label' => 'Enregister',
         ));
 
