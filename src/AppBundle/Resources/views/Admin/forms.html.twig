@@ -5,7 +5,6 @@
         {{- block('form_row') -}}
     </div>
     
-    {% if form.parent.vars.value.path is defined %}
     <div class="small-6 medium-8 large-10 columns">
         <div class="callout upload-status-container" style="display: none;" data-closable>
             <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
@@ -13,9 +12,12 @@
             </button>
             <p class="upload-status-content"></p>
         </div>
+        {% if form.parent.vars.value.path is defined %}
         <img src="/{{ form.parent.vars.value.path }}" alt="{{ form.parent.vars.value.name }}" class="thumbnail" />
+        {% else %}
+        <img src="#" alt="Pas d'image encore" class="thumbnail" />
+        {% endif %}
     </div>
-    {% endif %}
 </div>
 {%- endblock file_row %}
 

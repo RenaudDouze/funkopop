@@ -208,7 +208,13 @@ class AdminController extends Controller
      */
     public function uploadAction(Request $request, Image $image = null)
     {
-        $form = $this->getEditForm($image);
+        if (! $image) {
+            $image = new Image();
+            $form = $this->getAddForm();
+        } else {
+            $form = $this->getEditForm($image);
+        }
+
 
         $form->handleRequest($request);
 
@@ -216,6 +222,10 @@ class AdminController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             $image = $this->handleForm($form);
+
+            if (! $image->getId()) {
+                $em->persist($image);
+            }
 
             $em->flush();
 
