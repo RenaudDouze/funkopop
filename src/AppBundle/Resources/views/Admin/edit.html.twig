@@ -16,55 +16,5 @@
 
 <script type="text/javascript">
     var autocompleteSource = ['{{ tags|join("', '")|raw }}'];
-
-    /**
-     * Initialise le bloc de status de l'upload
-     */
-    function uploadStatusInit()
-    {
-        $('.upload-status-container').removeClass('warning').removeClass('success').removeClass('secondary').hide();
-
-        $('.upload-status-content').html('');
-    }
-
-    $(function () {
-        $('#image_form_path').fileupload({
-            url: Routing.generate('app_admin_upload', {id: {{ image.id }}}),
-            dataType: 'json',
-        }).on('fileuploadadd', function (e, data) {
-            uploadStatusInit();
-
-            $('.upload-status-content').html('Upload en cours');
-            $('.upload-status-container').addClass('secondary').show();
-        }).on('fileuploaddone', function (e, data) {
-            var result = data.result;
-
-            uploadStatusInit();
-
-            if (undefined === result.error) {
-                $('img.thumbnail').attr('src', '/'+result.path);
-
-                $('.upload-status-content').html("L'upload a marché")
-                $('.upload-status-container').addClass('success').show();
-            } else {
-                $('.upload-status-content').html(result.error);
-                $('.upload-status-container').addClass('warning').show();
-            }
-        }).prop('disabled', !$.support.fileInput)
-        .parent().addClass($.support.fileInput ? undefined : 'disabled');
-    });
 </script>
-
-<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-<script type="text/javascript" src="{{ asset('js/vendor/jquery.ui.widget.js') }}"></script>
-<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-<script type="text/javascript" src="{{ asset('js/jquery.iframe-transport.js') }}"></script>
-<!-- The basic File Upload plugin -->
-<script type="text/javascript" src="{{ asset('js/jquery.fileupload.js') }}"></script>
-
 {% endblock scripts %}
-
-{% block stylesheet %}
-{{ parent() }}
-<link rel="stylesheet" href="{{ asset('css/jquery.fileupload.css') }}">
-{% endblock stylesheet %}

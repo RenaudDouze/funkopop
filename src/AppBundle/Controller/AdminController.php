@@ -191,47 +191,7 @@ class AdminController extends Controller
 
         return new JsonResponse($list);
     }
-
-    /**
-     * Upload une image
-     *
-     * @param Request $request
-     *
-     * @return Response
-     *
-     * @Route(
-     *     "/upload/{id}", 
-     *     options={"expose"=true},
-     *     requirements={"id" = "\d+"}, 
-     *     defaults={"id" = null}
-     * )
-     */
-    public function uploadAction(Request $request, Image $image = null)
-    {
-        $form = $this->getEditForm($image);
-
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $image = $this->handleForm($form);
-
-            $em->flush();
-
-            $serializer = $this->get('jms_serializer');
-            $data = $serializer->serialize($image, 'json');
-
-            $response = new Response();
-            $response->setContent($data);
-            $response->headers->set('Content-Type', 'application/json');
-
-            return $response;
-        }
-
-        return new JsonResponse(['error' => 'Image invalide']);
-    }
-
+    
     /**
      * Get image form
      *
@@ -258,7 +218,7 @@ class AdminController extends Controller
         $form = $this->getForm($image);
 
         $form->add('save', SubmitType::class, array(
-            'attr' => array('class' => 'save'),
+            'attr' => array('class' => 'save success'),
             'label' => 'Ajouter',
         ));
 
@@ -277,7 +237,7 @@ class AdminController extends Controller
         $form = $this->getForm($image);
 
         $form->add('save', SubmitType::class, array(
-            'attr' => array('class' => 'save'),
+            'attr' => array('class' => 'save success'),
             'label' => 'Enregister',
         ));
 
