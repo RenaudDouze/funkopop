@@ -1,22 +1,24 @@
 {% block file_row -%}
 <div class="row">
-    <div class="small-6 medium-4 large-2 columns">
+    <div class="large-12 columns">
         {%- set attr = attr|merge({class: (attr.class|default('') ~ ' show-for-sr')|trim}) -%}
         {{- block('form_row') -}}
     </div>
     
-    <div class="small-6 medium-8 large-10 columns">
+    <div class="large-12 columns">
         <div class="callout upload-status-container" style="display: none;" data-closable>
             <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
               <span aria-hidden="true">&times;</span>
             </button>
             <p class="upload-status-content"></p>
         </div>
-        {% if form.parent.vars.value.path is defined %}
-        <img src="/{{ form.parent.vars.value.path }}" alt="{{ form.parent.vars.value.name }}" class="thumbnail" />
-        {% else %}
-        <img src="#" alt="Pas d'image encore" class="thumbnail" />
-        {% endif %}
+        <div class="thumbnail" id="image-preview-{{ id }}">
+            {% if form.parent.vars.value.path is defined %}
+            <img src="/{{ form.parent.vars.value.path }}" alt="{{ form.parent.vars.value.name }}" />
+            {% else %}
+            <img src="#" alt="Pas d'image encore" />
+            {% endif %}
+        </div>
     </div>
 </div>
 {%- endblock file_row %}
@@ -39,4 +41,26 @@ $(document).ready(function() {
 });
 </script>
 {%- endblock _image_form_tags_widget %}
+
+{%- block _image_form_path_widget %}
+{{ form_widget(form) }}
+<script type="text/javascript">
+$("#{{ id }}").change(function () {
+    var input = this;
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            var $preview = $('#image-preview-{{ id }}').find('img');
+
+            $preview.attr('title', $("#{{ id }}").val());
+            $preview.attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+});
+</script>
+{%- endblock _image_form_path_widget %}
 
