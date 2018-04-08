@@ -1,0 +1,23 @@
+{% for flash_message in app.session.flashbag.get('notice') %}
+<div class="callout primary">
+    {{ flash_message }}
+</div>
+{% endfor %}
+
+{% for flash_message in app.session.flashbag.get('warning') %}
+<div class="callout warning">
+    {{ flash_message }}
+</div>
+{% endfor %}
+
+{% for flash_message in app.session.flashbag.get('error') %}
+<div class="callout alert">
+    {{ flash_message }}
+</div>
+{% endfor %}
+
+{% for flash_message in app.session.flashbag.get('success') %}
+<div class="callout success">
+    {{ flash_message }}
+</div>
+{% endfor %}

@@ -1,0 +1,51 @@
+{% extends 'AppBundle:Index:base.html.twig' %}
+
+{% block index_content %}
+
+{% if list|length %}
+<div class="row small-up-3 medium-up-6 large-up-6">
+    {% for image in list %}
+    <div class="columns">
+        <div class="img-container">
+            {% if image.isRare %}
+            <span class="warning badge badge-rare"><i class="fi-star"></i></span>
+            {% endif %}
+            <img src="{{ web_image(image.path).cropResize(270, 357).jpeg() }}" alt="{{ image.name }}" class="thumbnail {{ ((image.isRare) ? 'thumbnail-rare' : '') }}" data-open="modal-{{ image.id }}" />
+        </div>
+
+        <div class="thumbnail-legend reveal tpl-mosaique" id="modal-{{ image.id }}" data-reveal data-close>
+            <div class="media-object stack-for-small">
+                <div class="media-object-section">
+                    <div class="thumbnail {{ ((image.isRare) ? 'thumbnail-rare' : '') }}">
+                        <img src="{{ web_image(image.path).cropResize(270, 357).jpeg() }}" alt="{{ image.name }}" />
+                    </div>
+                </div>
+                <div class="media-object-section">
+                    <h4>                        
+                        {% if image.isRare %}
+                        <span class="warning badge badge-rare"><i class="fi-star"></i></span>
+                        {% endif %}
+
+                        {{ image.title }}
+                    </h4>
+                    <p>
+                        {% include 'AppBundle:Index:_tags.html.twig' %}
+                    </p> 
+                    <p>
+                        <small>{{ image.description }}</small>
+                    </p> 
+
+                    <button class="close-button" data-close aria-label="Close reveal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+{% include 'AppBundle:Index:no_image.html.twig' %}
+{% endif %}
+
+{% endblock index_content %}

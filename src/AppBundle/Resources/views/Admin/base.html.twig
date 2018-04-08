@@ -1,0 +1,59 @@
+{% extends 'AppBundle:Common:layout.html.twig' %}
+
+{% set currentRoute = app.request.attributes.get('_route') %}
+
+{% block content %}
+
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">Funko Pop - Admin</li>
+      <li class="{{ (('app_admin_index' == currentRoute) ? 'active' : '') }}">
+        <a href="{{ path('app_admin_index') }}">
+          <i class="fi-list"></i> Liste
+        </a>
+      </li>
+      <li class="{{ (('app_admin_add' == currentRoute) ? 'active' : '') }}">
+          <a href="{{ path('app_admin_add') }}">
+            <i class="fi-plus"></i> Ajouter
+          </a>
+      </li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu">
+      <li>
+          <a href="{{ path('app_index_index') }}">
+            <i class="fi-web"></i> Front
+          </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+{{ block('admin_content') }}
+
+{% endblock content %}
+
+{% block stylesheet %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/jquery-ui.structure.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+{% endblock stylesheet %}
+
+{% block head_scripts %}
+{{ parent() }}
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+<script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
+{% endblock head_scripts %}
+
+{% block scripts %}
+{{ parent() }}
+
+<script type="text/javascript" src="{{ asset('js/taggle-custom.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/admin.js') }}"></script>  
+
+{% endblock scripts %}

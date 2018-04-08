@@ -1,0 +1,9 @@
+{% if tracking_code %}
+<!-- Piwik -->
+  <script type="text/javascript">
+    tarteaucitron.user.piwikId = '{{ tracking_code }}';
+    (tarteaucitron.job = tarteaucitron.job || []).push('piwik');
+  </script>
+  <noscript><p><img src="//piwik.renauddouze.fr/piwik.php?idsite={{ tracking_code }}" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+{% endif %}

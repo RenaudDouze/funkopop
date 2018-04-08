@@ -1,0 +1,32 @@
+{% extends 'AppBundle:Index:base.html.twig' %}
+
+{% block index_content %}
+
+{% if list|length %}
+<div class="row small-up-2 medium-up-3 large-up-4">
+    {% for image in list %}
+    <div class="columns">
+        <h4>
+            {{ image.title }}
+        </h4>
+        <p>
+            {% include 'AppBundle:Index:_tags.html.twig' %}
+        </p> 
+        <p>
+            <small>{{ image.description }}</small>
+        </p> 
+
+        <div class="img-container">
+            {% if image.isRare %}
+            <span class="warning badge badge-rare"><i class="fi-star"></i></span>
+            {% endif %}
+            <img src="{{ web_image(image.path).cropResize(270, 357).jpeg() }}" alt="{{ image.name }}" class="thumbnail {{ ((image.isRare) ? 'thumbnail-rare' : '') }}" />
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+{% include 'AppBundle:Index:no_image.html.twig' %}
+{% endif %}
+
+{% endblock index_content %}
